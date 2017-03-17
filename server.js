@@ -4,6 +4,8 @@ var rp = require('request-promise');
 
 var app = express();
 
+var api_key="<skyscanner-api-key>"
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 app.use(express.static('public'));
@@ -61,7 +63,7 @@ app.get('/searchFlight', function(req, res){
             var options = {
                 uri: "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/"+req.query.searchQuery,
                 qs: {
-                    apiKey: '<need-key-skyrunner>' // -> uri + '?access_token=xxxxx%20xxxxx'
+                    apiKey: api_key // -> uri + '?access_token=xxxxx%20xxxxx'
                 },
                 json: true // Automatically parses the JSON string in the response
             };
