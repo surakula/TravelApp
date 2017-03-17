@@ -1,4 +1,4 @@
-   Preview
+
 # TravelApp
 
 Installation
