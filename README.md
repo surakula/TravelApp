@@ -1,7 +1,7 @@
 
 # TravelApp
 
-Requirements
+Test Requirements
 
 Install Node.js via package manager
     (https://nodejs.org/en/download/package-manager/)
