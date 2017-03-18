@@ -1,6 +1,9 @@
 
 # TravelApp
 
+Addtional info
+
+
 Requirements
 
 Install Node.js via package manager
