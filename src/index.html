@@ -1,0 +1,38 @@
+<html ng-app="travelAppMain">
+  <head>
+    <meta charset="utf-8">
+     <base href="/index.html">
+    <title>Travel Application</title>
+
+    <link rel="stylesheet" href="css/travelapp.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="lib/bootstrap-additions/dist/bootstrap-additions.css">
+    <link rel="stylesheet" href="css/angularStrap-modal-animation.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet"  href="lib/angular-toastr/dist/angular-toastr.css" />
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js" ></script>
+    <script src="lib/angular-animate/angular-animate.min.js" ></script>
+    <script src="lib/angular-strap/dist/angular-strap.js"></script>
+    <script src="lib/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="lib/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+
+
+    <script src="js/routes.js"></script>
+    <script src="js/login/login.component.js"></script>
+    <script src="js/home/searchflight.component.js"></script>
+    <script src="js/factory/travelFactory.js"></script>
+    <script src="js/service/travelService.js"></script>
+    <script src="js/travel.constant.js"></script>
+    <script src="js/travelAppMain.js"></script>
+
+  </head>
+  <body>
+        <toaster-container toaster-options="{'close-button': true,'time-out':3000}"></toaster-container>
+
+        <div class="col-md-12 container">
+        <div ui-view></div>
+    </div>
+  </body>
+</html>

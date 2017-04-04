@@ -9,18 +9,19 @@ Requirements
 Install Node.js via package manager
     (https://nodejs.org/en/download/package-manager/)
 
-You need a Security Key to access the Rest call from SkyScanner 
+You need a Security Key to access the Rest call from SkyScanner
 
 1. Create an account on skyscanner bussiness portal
 (http://portal.business.skyscanner.net/en-gb/accounts/login)
 2. Add a Travel API's to your dashboard
-3. Activate your key and copy the key to server.js
+3. Activate your key and copy the key to server/config/server.constant.js
 
 
 Installation
 1. Clone the Travel App repository
 2. $ cd TravelApp
 3. $ npm install
+4. $ bower install
 4. $ node server.js
 5. open chorme browser: http://localhost:8080
 

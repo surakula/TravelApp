@@ -19,9 +19,17 @@
   },
   "homepage": "https://github.com/surakula/travelApp#readme",
   "dependencies": {
+    "angular": "^1.6.3",
+    "angular-strap": "^2.3.12",
+    "angular-toastr": "^2.1.1",
+    "angular-ui-router": "^0.4.2",
+    "body-parser": "^1.15.2",
+    "cookie-session": "^2.0.0-beta.1",
     "express": "^4.13.2",
-     "body-parser": "^1.15.2",
-     "request-promise": "^4.2.0"
+    "express-jwt": "^5.1.0",
+    "helmet": "^3.5.0",
+    "jsonwebtoken": "^7.3.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
   }
 }
-
