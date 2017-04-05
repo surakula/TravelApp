@@ -38,7 +38,7 @@
 
           });
 
-          appService.service('AuthService',function($window, jwtHelper){
+          appService.service('AuthService',function($window, jwtHelper, toastr){
              return{
                isLoggedIn:isLoggedIn
              };
