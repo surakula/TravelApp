@@ -48,8 +48,7 @@ app.post('/authenticate', function (req, res) {
           {data:profile},
           config.sessionSecretKey2,
           { expiresIn: 60*5 });
-
-  res.json({ token: token, profile: profile });
+  res.json({ token: token, expires: new Date(60*5) , profile: profile });
 });
 
 app.get('/api/allCountries',function(req,res){

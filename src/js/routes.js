@@ -1,6 +1,6 @@
 (function(angular){
  'use strict'
-          var app  = angular.module("travelRoutes",['ui.router','LoginComponent','SearchFlightComponent']);
+          var app  = angular.module("travelRoutes",['ui.router','LoginComponent','SearchFlightComponent','toastr']);
           app.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
                 $urlRouterProvider.otherwise('/');
                 $locationProvider.hashPrefix('!');
@@ -45,9 +45,10 @@
               $httpProvider.interceptors.push('AuthInterceptor');
             });
 
-            app.run(function($rootScope,AuthService,$state){
+            app.run(function($rootScope,AuthService,$state, toastr){
                   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
-                     if(toState.authenticate && toState.name !== 'login' && !AuthService.isLoggedIn()){
+                     if(toState.authenticate && toState.name !== 'login' && AuthService.isLoggedIn()){
+                       toastr.error("Un Authorised Access, Please log in", 'Error');
                        event.preventDefault();
                        $state.transitionTo('login');
                      }

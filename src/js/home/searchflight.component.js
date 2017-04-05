@@ -1,10 +1,10 @@
 (function(angular){
-    var app  = angular.module("SearchFlightComponent",[]);
+    var app  = angular.module("SearchFlightComponent",['toastr']);
 
 
     app.component("searchWidget",{
           templateUrl:'js/home/searchflight.tpl.html',
-          controller: function(CountryListService, SharedService,TravelService,$filter){
+          controller: function(CountryListService, SharedService,TravelService,$filter,toastr, $state){
 
                this.$onInit = function(){
                    var ctrl= this;
@@ -12,6 +12,8 @@
                      ctrl.countries = response.data;
                  }).
                  catch(function(err){
+                    toastr.error(err.data, 'Error');
+                    $state.go('login');
                      console.log(err);
                  });
                }

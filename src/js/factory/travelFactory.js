@@ -5,7 +5,7 @@
       appFactory.factory('AuthTokenFactory', function AuthTokenFactory($window) {
         'use strict';
         var store = $window.localStorage;
-        var key = 'auth-token';
+        var key = 'access-token';
 
         return {
           getToken: getToken,

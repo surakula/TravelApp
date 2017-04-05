@@ -1,6 +1,6 @@
 (function(angular){
  'use strict'
-        var appService=angular.module('travel.service',[]);
+        var appService=angular.module('travel.service',['angular-jwt','toastr']);
         appService.service('Helpers',function(){
              return {
                 'extractDate' :  function(isoDate){
@@ -38,16 +38,27 @@
 
           });
 
-          appService.service('AuthService',function($window){
+          appService.service('AuthService',function($window, jwtHelper){
              return{
                isLoggedIn:isLoggedIn
              };
              function isLoggedIn(){
-               if($window.localStorage.getItem('loggedIn')){
-                 return true;
-               }else{
-                 console.log("User is not logged in");
-                 return false;
+               var token = $window.localStorage.getItem('access-token');
+               if (token) {
+                 if (!jwtHelper.isTokenExpired(token)) {
+                   if($window.localStorage.getItem('loggedIn')){
+                     return true;
+                   }else{
+                     toastr.error("User is not logged in", 'Error');
+                     console.log("User is not logged in");
+                     return false;
+                   }
+                 }else{
+                   toastr.error("Session Expired", 'Error');
+                   console.log("JWT Token Expired");
+                   return false;
+
+                 }
                }
              }
           });
@@ -71,14 +82,6 @@
                };
           });
           appService.service("SharedService",function(){
-               var security_token = "";
-              this.setSecurityToken = function(securityToken){
-                  security_token = securityToken;
-              };
-
-              this.getSecurityToken = function(){
-                  return security_token;
-              }
               var _places="";
               this.setPlaces = function(places){
                   _places= places;
@@ -96,13 +99,14 @@
               }
 
           });
+
           appService.service('UserService',function($http,CONSTANT,Storage){
               this.login = function(user){
                 return $http.post(CONSTANT.API_URL+'/authenticate',user,{headers:{'Content-Type': 'application/json'}});
               };
 
               this.logout = function(){
-                 Storage.remove('auth-token');
+                 Storage.remove('access-token');
                  Storage.remove('username');
                  Storage.remove('loggedIn');
               };

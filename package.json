@@ -4,8 +4,9 @@
   "description": "Using Angular and NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "dev": "NODE_ENV=development gulp",
+    "prod": "NODE_ENV=production gulp",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/surakula/travelApp#readme",
   "dependencies": {
     "angular": "^1.6.3",
+    "angular-jwt": "^0.1.9",
     "angular-strap": "^2.3.12",
     "angular-toastr": "^2.1.1",
     "angular-ui-router": "^0.4.2",
