@@ -1,0 +1,54 @@
+
+<section  layout="row" layout-fill flex>
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
+                class=" md-whiteframe-z2 md-sidenav-left" layout-fill flex >
+      <md-toolbar md-theme="custom" class="md-hue-1 md-whiteframe-z2 ">
+        <md-button layout="row" layout-align="center center" class="md-toolbar-tools"
+                   href="https://github.com/surakula/travelApp">
+                   <i hide-sm class="material-icons md-24">flight_takeoff</i>
+          <strong>Travel App</strong>
+        </md-button>
+        <section layout-align="start center" layout-fill flex>
+            <md-button hide-gt-sm ng-click="$ctrl.toggleItemsList()" aria-label="Menu">
+                <i class="material-icons md-16">menu</i>
+            </md-button>
+        </section>
+      </md-toolbar>
+      <md-button ng-repeat-start="item in $ctrl.menuItems" layout="column" layout-align="center center"
+                 class="capitalize" ng-click="$ctrl.selectItem(item)"
+                 ui-sref-active="md-accent" ui-sref="{{item.sref}}">
+          <div hide-xs hide-sm hide-md class="md-tile-content">
+              <i class="material-icons md-36">{{item.icon}}</i>
+          </div>
+          <div class="md-tile-content">
+              {{item.name}}
+          </div>
+      </md-button>
+      <md-divider ng-repeat-end></md-divider>
+    </md-sidenav>
+
+    <div layout="column"  flex>
+
+        <md-toolbar layout="row" layout-align="center center" >
+          <section layout-align="start center" layout-fill flex>
+              <md-button hide-gt-sm ng-click="$ctrl.toggleItemsList()" aria-label="Menu">
+                  <i hide-gt-sm class="material-icons md-24">flight_takeoff</i>
+                  <i class="material-icons">menu</i>
+              </md-button>
+          </section>
+          <section layout-align="end center">
+            <md-button class="toolbar-button" ui-sref=".profile" aria-label="Profile">
+                <i class="material-icons md-24">account_box</i>
+            </md-button>
+            <md-button class="toolbar-button" ui-sref="logout" aria-label="Logout">
+                <md-icon md-svg-src="img/icons/logout.svg" class="s36" aria-label="Logout"></md-icon>
+            </md-button>
+          </section>
+        </md-toolbar>
+
+        <md-content flex class="md-padding page-content">
+            <div ui-view layout-fill></div>
+        </md-content>
+    </div>
+
+</section>

@@ -62,6 +62,7 @@ app.get('/api/allCountries',function(req,res){
 
 });
 app.get('/api/searchFlight', function(req, res){
+            console.log(req.query.searchQuery);
             var options = {
                 uri: "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/"+req.query.searchQuery,
                 qs: {
@@ -69,8 +70,10 @@ app.get('/api/searchFlight', function(req, res){
                 },
                 json: true // Automatically parses the JSON string in the response
             };
+        //   console.log(options.uri+ "...Server response");
             rp(options)
                 .then(function (repos) {
+
                     res.json(repos);
                 })
                 .catch(function (reason) {

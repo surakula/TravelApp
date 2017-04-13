@@ -1,0 +1,92 @@
+
+body{color:#7A7A7A}
+.toolbar-button{min-width:20px}
+.page-content{background-color:#ECECEC}
+
+.capitalize{text-transform:capitalize}
+.img-circle{height:50px;border-radius:50%;margin:0 10px}
+.messages{position:relative}.messages-content{height:100vh}
+
+
+
+a.md-button.md-warn.md-raised,a.md-button.md-warn.md-fab,.md-button.md-warn.md-raised,.md-button.md-warn.md-fab{color:#fff}
+md-radio-button.md-accent.md-checked .md-label span{color:#009688}.md-toolbar-tools h1{font-size:22px}
+md-backdrop.md-sidenav-backdrop{position:fixed}
+
+
+.material-icons{vertical-align:middle}
+md-icon{height:auto}
+
+md-sidenav.md-locked-open.md-sidenav-left{width:200px;min-width:110px;max-width:200px}
+md-sidenav.md-sidenav-left{width:200px;min-width:110px;max-width:200px}
+md-sidenav.md-locked-open.md-sidenav-left {
+  width: $left-sidenav-width;
+  min-width: $left-sidenav-width;
+  max-width: $left-sidenav-width;
+}
+md-input-container:not(.md-input-invalid) label {
+    color: red
+}
+md-input-container .md-errors-spacer {
+    min-height: 0;
+}
+
+md-toast.md-error-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: red !important;
+}
+
+md-toast.md-success-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: green !important;
+}
+md-toast.md-info-toast-theme div.md-toast-content{
+    color: white !important;
+    background-color: #0277BD!important;
+}
+
+@font-face {
+    font-family: 'Material-Design-Icons';
+    src: url('Material-Design-Icons.eot');
+    src: url('Material-Design-Icons.eot?#iefix') format('embedded-opentype'),
+         url('Material-Design-Icons.woff2') format('woff2'),
+         url('Material-Design-Icons.woff') format('woff'),
+         url('Material-Design-Icons.ttf') format('truetype'),
+         url('Material-Design-Icons.svg#ge_dinar_oneregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.inputdemoIcons {
+  /*
+.right-icon {
+  position: absolute;
+  top: 4px;
+  right: 2px;
+  left: auto;
+  margin-top: 0;
+}
+*/ }
+  .inputdemoIcons .inputIconDemo {
+    min-height: 48px; }
+  .inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.email {
+    color: green; }
+  .inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.name {
+    color: dodgerblue; }
+  .inputdemoIcons md-input-container.md-input-invalid > md-icon.email,
+  .inputdemoIcons md-input-container.md-input-invalid > md-icon.name {
+    color: red; }
+
+    .login-form {
+      md-card {
+        padding: 0!important;
+
+        md-card-title {
+          background-color: blue;
+        }
+      }
+    }

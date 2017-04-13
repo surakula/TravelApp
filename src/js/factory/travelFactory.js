@@ -1,8 +1,18 @@
-(function(angular){
-  'use strict';
-      var appFactory = angular.module('travel.factory',[]);
+(() => {
+    'use strict';
 
-      appFactory.factory('AuthTokenFactory', function AuthTokenFactory($window) {
+    /**
+     * @ngdoc module
+     * @name travel.factory
+     * @requires dependencies
+     * @description
+     *
+     * The `travel.factory` description.
+     *
+     */
+    var appFactory = angular
+              .module('travel.factory', []);
+    appFactory.factory('AuthTokenFactory', function AuthTokenFactory($window) {
         'use strict';
         var store = $window.localStorage;
         var key = 'access-token';
@@ -53,4 +63,4 @@
           };
         });
 
-})(angular);
+})();

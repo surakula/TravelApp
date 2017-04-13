@@ -1,6 +1,19 @@
-var travelApp =  (function(angular){
-    var app = angular.module("travelAppMain",['travelRoutes','travel.factory','travel.service','travel.constants']);
+(() => {
+    'use strict';
 
-
-    return app;
-})(angular);
+    /**
+     * @ngdoc module
+     * @name travelAppMain
+     * @requires dependencies
+     * @description
+     *
+     * The `travelAppMain` description.
+     *
+     */
+    angular
+        .module('travelAppMain', [
+          'ngMaterial' ,'travelRoutes',
+          'travel.factory','travel.service',
+          'travel.constants','navModule','md.data.table'
+        ]);
+})();

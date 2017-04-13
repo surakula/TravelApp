@@ -14,7 +14,7 @@ You need a Security Key to access the Rest call from SkyScanner
 1. Create an account on skyscanner bussiness portal
 (http://portal.business.skyscanner.net/en-gb/accounts/login)
 2. Add a Travel API's to your dashboard
-3. Activate your key and copy the key to server/config/server.constant.js
+3. Activate your key and copy the api-key to server/config/server.constant.js
 
 
 Installation

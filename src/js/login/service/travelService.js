@@ -1,6 +1,19 @@
 (() => {
- 'use strict'
-        var appService=angular.module('travel.service',['angular-jwt',]);
+    'use strict';
+
+    /**
+     * @ngdoc module
+     * @name travel.service
+     * @requires dependencies
+     * @description
+     *
+     * The `travel.service` description.
+     *
+     */
+    var appService = angular
+            .module('travel.service', [
+                'angular-jwt'
+            ]);
         appService.service('Helpers',function(){
              return {
                 'extractDate' :  function(isoDate){
@@ -38,7 +51,7 @@
 
           });
 
-          appService.service('AuthService',function($window, jwtHelper, $mdToast){
+          appService.service('AuthService',function($window, jwtHelper){
              return{
                isLoggedIn:isLoggedIn
              };
@@ -53,9 +66,10 @@
                        $mdToast.simple()
                          .content('User is not logged in')
                          .hideDelay(2000)
-                         .position('bottom right')
+                         .position('top right')
                          .theme("error-toast")
                      );
+                     //toastr.error("User is not logged in", 'Error');
                      console.log("User is not logged in");
                      return false;
                    }
@@ -64,10 +78,10 @@
                      $mdToast.simple()
                        .content('Authorization Token Expired, please login...')
                        .hideDelay(2000)
-                       .position('bottom right')
+                       .position('top right')
                        .theme("error-toast")
                    );
-                   console.log("JWT Token Expired");
+                   console.log("Authorization Token Expired");
                    return false;
 
                  }
@@ -88,7 +102,7 @@
                   var queryFlightURLOriDes =  queryFlightURLCCODE.replace('{originPlace}',data.originPlace).replace('{destinationPlace}',data.destinationPlace);
                   var finalQuery= queryFlightURLOriDes.replace('{outboundPartialDate}',data.outboundPartialDate).replace('{inboundPartialDate}',data.inboundPartialDate);
                   var _finalQuery=SKYSCANNER_API.SEARCH_FLIGHTS+"?searchQuery="+finalQuery;
-                  //console.log(_finalQuery);
+                  console.log(_finalQuery);
                   return $http.get(_finalQuery);
 
                };
@@ -123,4 +137,4 @@
                  Storage.remove('loggedIn');
               };
           });
-})()
+})();

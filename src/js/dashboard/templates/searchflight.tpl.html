@@ -1,0 +1,123 @@
+<section md-whiteframe="{{height}}" classs="md-no-flicker"  layout-align="center center"
+        ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3">
+  <md-subheader class="md-no-sticky">Search a Flight</md-subheader>
+  <md-content layout="column" layout-padding >
+        <form name="searchForm" ng-submit="$ctrl.searchFlight()" >
+           <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-xs >
+            <label>From</label>
+            <input type="text" name="originPlace" ng-model="$ctrl.originPlace" required />
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>To</label>
+            <input type="text" name="destinationPlace" ng-model="$ctrl.destinationPlace" required />
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Departure date</label>
+            <md-datepicker name="outboundPartialDate" ng-model="$ctrl.outboundPartialDate" required></md-datepicker>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Return date</label>
+            <md-datepicker name="inboundPartialDate"  md-min-date="$ctrl.outboundPartialDate" ng-model="$ctrl.inboundPartialDate" required></md-datepicker>
+            <div class="errors" ng-messages="searchForm.inboundPartialDate.$error">
+              <div ng-message="valid">The entered value is not a date!</div>
+              <div ng-message="required">This date is required!</div>
+              <div ng-message="mindate">Date is too early!</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
+            <label>Country</label>
+            <md-select name="country" ng-model="$ctrl.country" required flex>
+                <md-option ng-value="{{country}}" ng-repeat="country in $ctrl.countries">{{country.name}}</md-option>
+            </md-select>
+            <div ng-messages="searchForm.country.$error" >
+              <div ng-message="required">Required</div>
+            </div>
+          </md-input-container>
+          <md-button class=" md-fab md-mini md-primary" ng-disabled="!searchForm.$valid" aria-label="Search" ng-click="$ctrl.searchFlight()">
+                <i class="material-icons md-18">search</i>
+          </md-button>
+        </div>
+      </from>
+</md-content>
+</section>
+
+
+<div class="table-responsive-vertical md-no-flicker"  md-whiteframe="3" ng-show="$ctrl.resultsData.Quotes">
+
+    <md-toolbar class="md-table-toolbar md-default">
+      <div class="md-toolbar-tools" >
+        <h3> Search Results </h3>
+        <md-divider md-inset></md-divider>
+        <h6>Origin Place: {{$ctrl.originPlace}}, DestinationPlace: {{$ctrl.destinationPlace}},
+            Outbound date: {{$ctrl.outboundPartialDate | date: "MMMM-dd-y"}},
+            Inbound date: {{$ctrl.inboundPartialDate | date: "MMMM-dd-y"}}</h6>
+    </md-toolbar>
+  </div>
+
+    <!-- exact table from live demo -->
+    <data-md-table-pagination md-limit="$ctrl.query.limit" md-limit-options="$ctrl.limitOptions"
+            md-page="$ctrl.query.page"  md-total="{{$ctrl.totalQuotes }}"
+            md-page-select="$ctrl.options.pageSelect" md-on-paginate="getAllQuotes"
+            md-boundary-links="$ctrl.options.boundaryLinks" md-whiteframe="3">
+    </data-md-table-pagination>
+    <md-table-container md-whiteframe="1" class="md-no-flicker">
+    <table data-md-table data-md-row-select="$ctrl.options.rowSelection"
+          multiple="{{$ctrl.options.multiSelect}}" data-ng-model="selected"  md-progress="promise">
+          <thead md-head md-order="$ctrl.query.order" md-on-reorder="getAllQuotes">
+          <tr md-row>
+              <th md-column md-numeric md-order-by="Quote.QuoteId" >QuoteId</th>
+              <th md-column>Min-Price</th>
+              <th md-column><span>Outbound Leg</span></th>
+              <th md-column>Inbound Leg</th>
+              <th md-column>Quote Date Time</th>
+          </tr>
+          </thead>
+          <tbody md-body>
+          <tr  md-row md-select="Quote" md-select-id="QuoteId" ng-click="$ctrl.showDetails(Quote)"  md-auto-select ng-repeat="Quote in $ctrl.resultsData.Quotes | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit">
+            <td md-cell>{{Quote.QuoteId}}</td>
+            <td md-cell>${{Quote.MinPrice}}</td>
+            <td md-cell>
+              <table class="table">
+                  <tbody>
+                      <tr>
+                        <td>
+                          Departure Date : {{Quote.OutboundLeg.DepartureDate}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Carrier Name : {{$ctrl.getCarrierName(Quote.OutboundLeg.CarrierIds["0"])}}
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </td>
+            <td md-cell>
+              <table class="table">
+                  <tbody>
+                      <tr>
+                        <td>
+                          Departure Date : {{Quote.InboundLeg.DepartureDate}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Carrier Name : {{$ctrl.getCarrierName(Quote.InboundLeg.CarrierIds["0"])}}
+                        </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </td>
+            <td md-cell>${{Quote.QuoteDateTime}}</td>
+        </tr>
+          </tbody>
+      </table>
+    </md-table-container>
+     <data-md-table-pagination md-limit="$ctrl.query.limit"
+        md-limit-options="$ctrl.limitOptions" md-page="$ctrl.query.page"
+        md-total="{{$ctrl.totalQuotes }}" md-page-select="$ctrl.options.pageSelect"
+        md-boundary-links="$ctrl.options.boundaryLinks" md-whiteframe="5"
+        md-on-paginate="getAllQuotes">
+      </data-md-table-pagination>
+</div>
