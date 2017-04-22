@@ -4,7 +4,7 @@
     /**
      * @ngdoc module
      * @name topnav.component
-     * @requires dependencies
+     * @requires ngMaterial
      * @description
      *
      * The `topnav.component` description.

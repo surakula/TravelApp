@@ -5,7 +5,7 @@
      * @ngdoc service
      * @name service
      * @module nav.service
-     * @requires dependencies
+     * @requires 
      * @description
      *
      * The `service` service description.
